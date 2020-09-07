@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Aluno">
+    <Position X="13.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIQEAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Aluno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Aula">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\Aula.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Chamada">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAEAAABCAAAAAAAAJAAA=</HashCode>
+      <FileName>Models\Chamada.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Disciplina">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Disciplina.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Entity">
+    <Position X="8.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Frequencia">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAAEAABgAA=</HashCode>
+      <FileName>Models\Frequencia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Pessoa">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAGAAAA=</HashCode>
+      <FileName>Models\Pessoa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Professor">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Professor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Responsavel">
+    <Position X="16" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAABAAIAAAAAAAAAAAAAAAAgAAAAAEAAAAAAAQ=</HashCode>
+      <FileName>Models\Responsavel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PSI.TI.GestaoEscolar.Business.Models.Turma">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAACAAAAAAAAAAAEABAABAAA=</HashCode>
+      <FileName>Models\Turma.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="PSI.TI.GestaoEscolar.Business.Models.Enums.SituacaoAluno">
+    <Position X="13.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIEAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\SituacaoAluno.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
