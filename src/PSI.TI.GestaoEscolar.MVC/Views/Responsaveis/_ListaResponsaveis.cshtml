@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PSI.TI.GestaoEscolar.Application.ViewModels.ResponsavelViewModel>
+
+@{
+    Layout = null;
+}
+
+<vc:Summary></vc:Summary>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrauParentesco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ocupacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrauParentesco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ocupacao)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

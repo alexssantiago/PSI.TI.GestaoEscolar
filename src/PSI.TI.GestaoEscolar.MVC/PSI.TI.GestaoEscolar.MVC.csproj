@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="8.0.1" />
+    <PackageReference Include="microsoft.entityframeworkcore" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PSI.TI.GestaoEscolar.Application\PSI.TI.GestaoEscolar.Application.csproj" />
+    <ProjectReference Include="..\PSI.TI.GestaoEscolar.Data\PSI.TI.GestaoEscolar.Data.csproj" />
+  </ItemGroup>
+
+</Project>
