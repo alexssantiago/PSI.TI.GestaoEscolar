@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using PSI.TI.GestaoEscolar.Domain.Models.Enums;
 
 namespace PSI.TI.GestaoEscolar.Application.ViewModels
 {
@@ -24,7 +25,7 @@ namespace PSI.TI.GestaoEscolar.Application.ViewModels
         public Guid Matricula { get; set; }
         
         [DisplayName("Situação")]
-        public int Situacao { get; set; }
+        public SituacaoAluno Situacao { get; set; }
         
         public Guid ResponsavelId { get; set; }
         public ResponsavelViewModel Responsavel { get; set; }

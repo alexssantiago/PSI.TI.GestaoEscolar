@@ -37,7 +37,7 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             return PartialView("_ListaResponsaveis", responsaveis);
         }
 
-        [Route("dados-do-responsavel/{id:guid}")]
+        [Route("responsavel/{id:guid}")]
         public async Task<IActionResult> Detalhes(Guid id)
         {
             var responsavel = await _responsavelService.ObterPorId(id);
@@ -97,14 +97,11 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
         [Route("obter-dependentes-responsavel/{id:guid}")]
         public async Task<IActionResult> ObterDependentes(Guid id)
         {
-            var responsavelViewModel = await _responsavelService.ObterPorId(id);
+            var responsavel = await _responsavelService.ObterPorId(id);
 
-            if (responsavelViewModel == null)
-            {
-                return NotFound();
-            }
+            if (responsavel == null) return NotFound();
 
-            return PartialView("_ListaDependentes", responsavelViewModel);
+            return PartialView("_ListaDependentes", responsavel.Dependentes);
         }
     }
 }

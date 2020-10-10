@@ -2,13 +2,13 @@
 @model PSI.TI.GestaoEscolar.Application.ViewModels.ResponsavelViewModel
 
 @{
-    ViewData["Title"] = "Detalhes";
+    ViewData["Title"] = "Responsável";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>Informação somente leitura</h4>
+    <h4>Informações somente leitura</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Cpf)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cpf)
+            @this.FormatarCpf(Model.Cpf)
         </dd>
     </dl>
 </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div id="Target">
-    <partial name="_ListaDependentes" />
+    <partial name="_ListaDependentes" model="@Model.Dependentes" />
 </div>
 
 <p>

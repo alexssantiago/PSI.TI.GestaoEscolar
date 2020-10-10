@@ -98,6 +98,10 @@ function BuscaCep() {
     });
 }
 
-$(document).ready(function () {
+function fadeOutMensagem() {
     $("#msg_box").fadeOut(2500);
+}
+
+$(document).ready(function () {
+    fadeOutMensagem();
 });
