@@ -7,6 +7,10 @@
   <ItemGroup>
     <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="8.0.1" />
     <PackageReference Include="microsoft.entityframeworkcore" Version="3.1.8" />
+    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
