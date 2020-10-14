@@ -34,10 +34,7 @@ namespace PSI.TI.GestaoEscolar.Domain.Models
             _dependentes = new List<Aluno>();
         }
 
-        public override bool EhValido()
-        {
-            return base.EhValido() && new ResponsavelValidation().Validate(this).IsValid;
-        }
+        public override bool EhValido() => new ResponsavelValidation().Validate(this).IsValid;
 
         public void AdicionarDependente(Aluno aluno)
         {

@@ -8,6 +8,8 @@ namespace PSI.TI.GestaoEscolar.Domain.Models.Validations
 
         public AlunoValidation()
         {
+            Include(new PessoaValidation());
+
             RuleFor(a => a.ResponsavelId)
                 .NotEmpty().WithMessage(ResponsavelIdErroMsg);
         }

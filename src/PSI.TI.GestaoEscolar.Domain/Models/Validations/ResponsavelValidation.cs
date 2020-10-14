@@ -6,6 +6,8 @@ namespace PSI.TI.GestaoEscolar.Domain.Models.Validations
     {
         public ResponsavelValidation()
         {
+            Include(new PessoaValidation());
+
             RuleFor(r => r.GrauParentesco)
                 .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido.")
                 .Length(2, 50).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MinLength} caracteres.");
@@ -15,9 +17,6 @@ namespace PSI.TI.GestaoEscolar.Domain.Models.Validations
 
             RuleFor(r => r.Renda)
                 .GreaterThan(0).WithMessage("O campo {PropertyName} precisa ser maior que {ComparisonValue}.");
-
-            RuleFor(r => r.Nome)
-                .Length(2, 250).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MinLength} caracteres.");
         }
     }
 }

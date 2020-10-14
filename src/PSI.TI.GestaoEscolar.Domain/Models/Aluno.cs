@@ -21,10 +21,7 @@ namespace PSI.TI.GestaoEscolar.Domain.Models
             ResponsavelId = responsavelId;
         }
 
-        public override bool EhValido()
-        {
-            return base.EhValido() && new AlunoValidation().Validate(this).IsValid;
-        }
+        public override bool EhValido() => new AlunoValidation().Validate(this).IsValid;
 
         public void TornarAtivo() => Situacao = SituacaoAluno.Ativo;
 
