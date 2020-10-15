@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PSI.TI.GestaoEscolar.Domain.DomainObjects;
 
 namespace PSI.TI.GestaoEscolar.Application.Services
 {
@@ -83,7 +84,7 @@ namespace PSI.TI.GestaoEscolar.Application.Services
             var aluno = _mapper.Map<Aluno>(alunoViewModel);
             if (!ExecutarValidacao(new AlunoValidation(), aluno)) return;
 
-            var responsavel = await _responsavelRepository.ObterPorId(aluno.ResponsavelId);
+            var responsavel = await _responsavelRepository.ObterResponsavelDependentesPorId(aluno.ResponsavelId);
 
             if (responsavel == null)
             {
@@ -91,7 +92,15 @@ namespace PSI.TI.GestaoEscolar.Application.Services
                 return;
             }
 
-            responsavel.AdicionarDependente(aluno);
+            try
+            {
+                responsavel.AdicionarDependente(aluno);
+            }
+            catch (DomainException e)
+            {
+                Notificar(e.Message);
+                return;
+            }
 
             _alunoRepository.Adicionar(aluno);
             await _alunoRepository.UnitOfWork.Commit();

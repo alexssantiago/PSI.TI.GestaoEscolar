@@ -97,14 +97,14 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             return Json(new { success = true, url });
         }
 
-        [Route("adicionar-dependente-responsavel/{id:guid}")]
-        public IActionResult AdicionarDependente(Guid id)
+        [Route("adicionar-dependente-responsavel/{responsavelId:guid}")]
+        public IActionResult AdicionarDependente(Guid responsavelId)
         {
-            return PartialView("_CadastroDependente", new AlunoViewModel { ResponsavelId = id });
+            return PartialView("_CadastroDependente", new AlunoViewModel { ResponsavelId = responsavelId });
         }
 
         [HttpPost]
-        [Route("adicionar-dependente-responsavel/{id:guid}")]
+        [Route("adicionar-dependente-responsavel/{responsavelId:guid}")]
         public async Task<IActionResult> AdicionarDependente(AlunoViewModel alunoViewModel)
         {
             if (!ModelState.IsValid) return PartialView("_CadastroDependente", alunoViewModel);

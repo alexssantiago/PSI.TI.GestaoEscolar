@@ -38,9 +38,9 @@ namespace PSI.TI.GestaoEscolar.Domain.Models
 
         public void AdicionarDependente(Aluno aluno)
         {
-            if (aluno.ResponsavelId != Id) throw new DomainException($"O aluno {aluno.Nome} está associado a outro responsável.");
+            if (aluno.ResponsavelId != Id) throw new DomainException($"O aluno está associado a outro responsável.");
 
-            if (PossuiDependente(aluno)) throw new DomainException($"O responsável {Nome} já possui o dependente {aluno.Nome}");
+            if (PossuiDependente(aluno)) throw new DomainException($"O responsável já possui um dependente cadastrado com o CPF informado.");
 
             aluno.TornarAtivo();
             _dependentes.Add(aluno);
