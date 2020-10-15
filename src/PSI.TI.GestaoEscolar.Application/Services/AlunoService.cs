@@ -6,6 +6,7 @@ using PSI.TI.GestaoEscolar.Domain.Models;
 using PSI.TI.GestaoEscolar.Domain.Models.Validations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PSI.TI.GestaoEscolar.Application.Services
@@ -38,6 +39,12 @@ namespace PSI.TI.GestaoEscolar.Application.Services
             var aluno = _mapper.Map<Aluno>(alunoViewModel);
             if (!ExecutarValidacao(new AlunoValidation(), aluno)) return;
 
+            if (_alunoRepository.Buscar(r => r.Cpf == aluno.Cpf).Result.Any())
+            {
+                Notificar("Já existe um aluno cadastrado com o CPF informado.");
+                return;
+            }
+
             _alunoRepository.Adicionar(aluno);
             await _alunoRepository.UnitOfWork.Commit();
         }
@@ -46,6 +53,12 @@ namespace PSI.TI.GestaoEscolar.Application.Services
         {
             var aluno = _mapper.Map<Aluno>(alunoViewModel);
             if (!ExecutarValidacao(new AlunoValidation(), aluno)) return;
+
+            if (_alunoRepository.Buscar(r => r.Cpf == aluno.Cpf && r.Id != aluno.Id).Result.Any())
+            {
+                Notificar("Já existe um aluno cadastrado com este CPF informado.");
+                return;
+            }
 
             _alunoRepository.Atualizar(aluno);
             await _alunoRepository.UnitOfWork.Commit();

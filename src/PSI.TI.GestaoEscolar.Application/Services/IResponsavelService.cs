@@ -8,6 +8,7 @@ namespace PSI.TI.GestaoEscolar.Application.Services
     public interface IResponsavelService : IDisposable
     {
         Task<ResponsavelViewModel> ObterPorId(Guid id);
+        Task<ResponsavelViewModel> ObterResponsavelDependentesPorId(Guid id);
         Task<IEnumerable<ResponsavelViewModel>> ObterTodos();
 
         Task Adicionar(ResponsavelViewModel responsavelViewModel);

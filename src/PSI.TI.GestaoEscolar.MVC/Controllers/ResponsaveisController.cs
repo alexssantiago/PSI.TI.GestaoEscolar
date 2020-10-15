@@ -40,12 +40,9 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
         [Route("responsavel/{id:guid}")]
         public async Task<IActionResult> Detalhes(Guid id)
         {
-            var responsavel = await _responsavelService.ObterPorId(id);
+            var responsavel = await _responsavelService.ObterResponsavelDependentesPorId(id);
 
-            if (responsavel == null)
-            {
-                return NotFound();
-            }
+            if (responsavel == null) return NotFound();
 
             return View(responsavel);
         }
@@ -67,6 +64,34 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             if (!OperacaoValida) return PartialView("_Cadastro", responsavelViewModel);
 
             TempData["Sucesso"] = "Responsável cadastrado com sucesso!";
+
+            var url = Url.Action("ObterResponsaveis", "Responsaveis");
+            return Json(new { success = true, url });
+        }
+
+        [Route("editar-responsavel/{id:guid}")]
+        public async Task<IActionResult> Editar(Guid id)
+        {
+            var responsavel = await _responsavelService.ObterPorId(id);
+
+            if (responsavel == null) return NotFound();
+
+            return PartialView("_Editar", responsavel);
+        }
+
+        [HttpPost]
+        [Route("editar-responsavel/{id:guid}")]
+        public async Task<IActionResult> Editar(Guid id, ResponsavelViewModel responsavelViewModel)
+        {
+            if (id != responsavelViewModel.Id) return NotFound();
+
+            if (!ModelState.IsValid) return PartialView("_Editar", responsavelViewModel);
+
+            await _responsavelService.Atualizar(responsavelViewModel);
+
+            if (!OperacaoValida) return PartialView("_Editar", responsavelViewModel);
+
+            TempData["Sucesso"] = "Responsável atualizado com sucesso!";
 
             var url = Url.Action("ObterResponsaveis", "Responsaveis");
             return Json(new { success = true, url });
@@ -97,7 +122,7 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
         [Route("obter-dependentes-responsavel/{id:guid}")]
         public async Task<IActionResult> ObterDependentes(Guid id)
         {
-            var responsavel = await _responsavelService.ObterPorId(id);
+            var responsavel = await _responsavelService.ObterResponsavelDependentesPorId(id);
 
             if (responsavel == null) return NotFound();
 

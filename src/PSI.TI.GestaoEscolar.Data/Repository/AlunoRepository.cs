@@ -3,6 +3,8 @@ using PSI.TI.GestaoEscolar.Domain.Interfaces.Repository;
 using PSI.TI.GestaoEscolar.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PSI.TI.GestaoEscolar.Data.Repository
@@ -25,6 +27,11 @@ namespace PSI.TI.GestaoEscolar.Data.Repository
         public async Task<IEnumerable<Aluno>> ObterTodos()
         {
             return await _context.Alunos.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<Aluno>> Buscar(Expression<Func<Aluno, bool>> condicao)
+        {
+            return await _context.Alunos.AsNoTracking().Where(condicao).ToListAsync();
         }
 
         public void Adicionar(Aluno aluno)
