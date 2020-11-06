@@ -106,6 +106,33 @@ namespace PSI.TI.GestaoEscolar.Application.Services
             await _alunoRepository.UnitOfWork.Commit();
         }
 
+        public async Task AtualizarDependente(AlunoViewModel alunoViewModel)
+        {
+            var aluno = _mapper.Map<Aluno>(alunoViewModel);
+            if (!ExecutarValidacao(new AlunoValidation(), aluno)) return;
+
+            var responsavel = await _responsavelRepository.ObterResponsavelDependentesPorId(aluno.ResponsavelId);
+
+            if (responsavel == null)
+            {
+                Notificar("Responsável não cadastrado!");
+                return;
+            }
+
+            try
+            {
+                responsavel.AtualizarDependente(aluno);
+            }
+            catch (DomainException e)
+            {
+                Notificar(e.Message);
+                return;
+            }
+
+            _alunoRepository.Atualizar(aluno);
+            await _alunoRepository.UnitOfWork.Commit();
+        }
+
         public void Dispose()
         {
             _responsavelRepository?.Dispose();

@@ -9,9 +9,5 @@ namespace PSI.TI.GestaoEscolar.Application.Services
     {
         Task<AlunoViewModel> ObterPorId(Guid id);
         Task<IEnumerable<AlunoViewModel>> ObterTodos();
-
-        Task Adicionar(AlunoViewModel alunoViewModel);
-        Task Atualizar(AlunoViewModel alunoViewModel);
-        Task Remover(Guid id);
     }
 }

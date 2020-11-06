@@ -46,7 +46,7 @@
 </div>
 
 <p>
-    <a class="btn btn-info" asp-action="AdicionarDependente" asp-route-id="@Model.Id" data-modal="">Novo Dependente</a>
+    <a class="btn btn-info" asp-controller="Dependentes" asp-action="Cadastrar" asp-route-responsavelId="@Model.Id" data-modal="">Novo Dependente</a>
 </p>
 
 <div id="myModal" class="modal fade in">

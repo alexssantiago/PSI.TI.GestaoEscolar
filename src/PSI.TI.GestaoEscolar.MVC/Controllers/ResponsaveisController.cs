@@ -37,7 +37,7 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             return PartialView("_ListaResponsaveis", responsaveis);
         }
 
-        [Route("responsavel/{id:guid}")]
+        [Route("detalhes-responsavel/{id:guid}")]
         public async Task<IActionResult> Detalhes(Guid id)
         {
             var responsavel = await _responsavelService.ObterResponsavelDependentesPorId(id);
@@ -47,14 +47,14 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             return View(responsavel);
         }
 
-        [Route("cadastro-responsavel")]
+        [Route("cadastrar-responsavel")]
         public IActionResult Cadastrar()
         {
             return PartialView("_Cadastro", new ResponsavelViewModel());
         }
 
         [HttpPost]
-        [Route("cadastro-responsavel")]
+        [Route("cadastrar-responsavel")]
         public async Task<IActionResult> Cadastrar(ResponsavelViewModel responsavelViewModel)
         {
             if (!ModelState.IsValid) return PartialView("_Cadastro", responsavelViewModel);
@@ -69,64 +69,32 @@ namespace PSI.TI.GestaoEscolar.MVC.Controllers
             return Json(new { success = true, url });
         }
 
-        [Route("editar-responsavel/{id:guid}")]
-        public async Task<IActionResult> Editar(Guid id)
+        [Route("atualizar-responsavel/{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id)
         {
             var responsavel = await _responsavelService.ObterPorId(id);
 
             if (responsavel == null) return NotFound();
 
-            return PartialView("_Editar", responsavel);
+            return PartialView("_Atualizar", responsavel);
         }
 
         [HttpPost]
-        [Route("editar-responsavel/{id:guid}")]
-        public async Task<IActionResult> Editar(Guid id, ResponsavelViewModel responsavelViewModel)
+        [Route("atualizar-responsavel/{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id, ResponsavelViewModel responsavelViewModel)
         {
             if (id != responsavelViewModel.Id) return NotFound();
 
-            if (!ModelState.IsValid) return PartialView("_Editar", responsavelViewModel);
+            if (!ModelState.IsValid) return PartialView("_Atualizar", responsavelViewModel);
 
             await _responsavelService.Atualizar(responsavelViewModel);
 
-            if (!OperacaoValida) return PartialView("_Editar", responsavelViewModel);
+            if (!OperacaoValida) return PartialView("_Atualizar", responsavelViewModel);
 
             TempData["Sucesso"] = "Responsável atualizado com sucesso!";
 
-            var url = Url.Action("ObterResponsaveis", "Responsaveis");
+            var url = Url.Action("ObterResponsaveis");
             return Json(new { success = true, url });
-        }
-
-        [Route("adicionar-dependente-responsavel/{id:guid}")]
-        public IActionResult AdicionarDependente(Guid id)
-        {
-            return PartialView("_CadastroDependente", new AlunoViewModel { ResponsavelId = id });
-        }
-
-        [HttpPost]
-        [Route("adicionar-dependente-responsavel/{id:guid}")]
-        public async Task<IActionResult> AdicionarDependente([FromForm] AlunoViewModel alunoViewModel)
-        {
-            if (!ModelState.IsValid) return PartialView("_CadastroDependente", alunoViewModel);
-
-            await _responsavelService.AdicionarDependente(alunoViewModel);
-
-            if (!OperacaoValida) return PartialView("_CadastroDependente", alunoViewModel);
-
-            TempData["Sucesso"] = "Dependente cadastrado com sucesso!";
-
-            var url = Url.Action("ObterDependentes", "Responsaveis", new { id = alunoViewModel.ResponsavelId });
-            return Json(new { success = true, url });
-        }
-
-        [Route("obter-dependentes-responsavel/{id:guid}")]
-        public async Task<IActionResult> ObterDependentes(Guid id)
-        {
-            var responsavel = await _responsavelService.ObterResponsavelDependentesPorId(id);
-
-            if (responsavel == null) return NotFound();
-
-            return PartialView("_ListaDependentes", responsavel.Dependentes);
         }
     }
 }

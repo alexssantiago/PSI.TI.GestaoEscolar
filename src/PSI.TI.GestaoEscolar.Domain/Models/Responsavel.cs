@@ -3,6 +3,7 @@ using PSI.TI.GestaoEscolar.Domain.Models.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PSI.TI.GestaoEscolar.Domain.Models.Enums;
 
 namespace PSI.TI.GestaoEscolar.Domain.Models
 {
@@ -38,11 +39,25 @@ namespace PSI.TI.GestaoEscolar.Domain.Models
 
         public void AdicionarDependente(Aluno aluno)
         {
-            if (aluno.ResponsavelId != Id) throw new DomainException($"O aluno está associado a outro responsável.");
+            if (aluno.ResponsavelId != Id) throw new DomainException("O aluno está associado a outro responsável.");
 
-            if (PossuiDependente(aluno)) throw new DomainException($"O responsável já possui um dependente cadastrado com o CPF informado.");
+            if (PossuiDependente(aluno)) throw new DomainException("O responsável já possui um dependente cadastrado com o CPF informado.");
 
             aluno.TornarAtivo();
+            _dependentes.Add(aluno);
+        }
+
+        public void AtualizarDependente(Aluno aluno)
+        {
+            if (!PossuiDependente(aluno)) throw new DomainException("O responsável não possui um dependente cadastrado com o CPF informado.");
+
+            var dependenteExistente = Dependentes.FirstOrDefault(a => a.Id == aluno.Id);
+
+            if (dependenteExistente == null) throw new DomainException("O dependente não está associado ao responsável.");
+
+            if (aluno.Situacao != SituacaoAluno.Ativo && aluno.Situacao != SituacaoAluno.Matriculado) return;
+
+            _dependentes.Remove(dependenteExistente);
             _dependentes.Add(aluno);
         }
 

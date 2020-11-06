@@ -1,7 +1,7 @@
-﻿@model PSI.TI.GestaoEscolar.Application.ViewModels.ResponsavelViewModel
+﻿@model PSI.TI.GestaoEscolar.Application.ViewModels.AlunoViewModel
 
 @{
-    ViewData["Title"] = "Editar Responsável";
+    ViewData["Title"] = "Atualizar Dependente";
 }
 
 <div class="modal-header">
@@ -13,10 +13,13 @@
 
 <vc:Summary></vc:Summary>
 
-<form asp-action="Editar">
+<form asp-action="Atualizar">
     <div class="modal-body">
         <input type="hidden" asp-for="Id" />
-        <partial name="_Responsavel" />
+        <input type="hidden" asp-for="ResponsavelId" />
+        <input type="hidden" asp-for="Situacao" />
+        <input type="hidden" asp-for="Matricula" />
+        <partial name="_Dependente" />
     </div>
     <div class="modal-footer">
         <input type="submit" value="Salvar" class="btn btn-success" />

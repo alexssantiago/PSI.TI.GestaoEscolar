@@ -26,6 +26,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Situacao)
             </th>
+            <th></th>
         </tr>
     </thead>
 
@@ -43,6 +44,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Situacao)
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning" asp-controller="Dependentes" asp-action="Atualizar" asp-route-id="@item.Id" data-modal=""><spam class="fa fa-pencil-alt"></spam></a>
             </td>
         </tr>
     }

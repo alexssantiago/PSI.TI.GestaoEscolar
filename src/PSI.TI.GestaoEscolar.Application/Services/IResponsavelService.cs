@@ -16,5 +16,6 @@ namespace PSI.TI.GestaoEscolar.Application.Services
         Task Remover(Guid id);
 
         Task AdicionarDependente(AlunoViewModel alunoViewModel);
+        Task AtualizarDependente(AlunoViewModel alunoViewModel);
     }
 }
