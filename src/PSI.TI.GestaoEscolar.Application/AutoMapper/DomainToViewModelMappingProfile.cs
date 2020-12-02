@@ -10,6 +10,10 @@ namespace PSI.TI.GestaoEscolar.Application.AutoMapper
         {
             CreateMap<Responsavel, ResponsavelViewModel>();
             CreateMap<Aluno, AlunoViewModel>();
+            CreateMap<Disciplina, DisciplinaViewModel>();
+            CreateMap<Professor, ProfessorViewModel>();
+            CreateMap<Turma, TurmaViewModel>();
+            CreateMap<Matricula, MatriculaViewModel>();
         }
     }
 }

@@ -15,6 +15,15 @@ namespace PSI.TI.GestaoEscolar.Application.AutoMapper
 
             CreateMap<AlunoViewModel, Aluno>()
                 .ConstructUsing(a => new Aluno(a.Nome, a.Cpf, a.DataNascimento, a.ResponsavelId));
+
+            CreateMap<ProfessorViewModel, Professor>()
+                .ConstructUsing(p => new Professor(p.Nome, p.Cpf, p.DataNascimento, p.Formacao));
+
+            CreateMap<DisciplinaViewModel, Disciplina>()
+                .ConstructUsing(d => new Disciplina(d.Descricao, d.CargaHoraria));
+
+            CreateMap<MatriculaViewModel, Matricula>()
+                .ConstructUsing(m => new Matricula(m.AlunoId, m.TurmaId));
         }
     }
 }

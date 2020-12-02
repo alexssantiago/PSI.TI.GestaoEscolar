@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PSI.TI.GestaoEscolar.Data;
 
 namespace PSI.TI.GestaoEscolar.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201126185108_CadastroTurmas")]
+    partial class CadastroTurmas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +46,14 @@ namespace PSI.TI.GestaoEscolar.Data.Migrations
                     b.Property<int>("Situacao")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("TurmaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ResponsavelId");
+
+                    b.HasIndex("TurmaId");
 
                     b.ToTable("Alunos");
                 });
@@ -64,7 +71,7 @@ namespace PSI.TI.GestaoEscolar.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
-                    b.Property<Guid?>("TurmaId")
+                    b.Property<Guid>("TurmaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -72,21 +79,6 @@ namespace PSI.TI.GestaoEscolar.Data.Migrations
                     b.HasIndex("TurmaId");
 
                     b.ToTable("Disciplinas");
-                });
-
-            modelBuilder.Entity("PSI.TI.GestaoEscolar.Domain.Models.Matricula", b =>
-                {
-                    b.Property<Guid>("AlunoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TurmaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AlunoId", "TurmaId");
-
-                    b.HasIndex("TurmaId");
-
-                    b.ToTable("Matriculas");
                 });
 
             modelBuilder.Entity("PSI.TI.GestaoEscolar.Domain.Models.Professor", b =>
@@ -176,19 +168,16 @@ namespace PSI.TI.GestaoEscolar.Data.Migrations
                         .HasForeignKey("ResponsavelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PSI.TI.GestaoEscolar.Domain.Models.Turma", null)
+                        .WithMany("AlunosMatriculados")
+                        .HasForeignKey("TurmaId");
                 });
 
             modelBuilder.Entity("PSI.TI.GestaoEscolar.Domain.Models.Disciplina", b =>
                 {
                     b.HasOne("PSI.TI.GestaoEscolar.Domain.Models.Turma", "Turma")
                         .WithMany("DisciplinasOfertadas")
-                        .HasForeignKey("TurmaId");
-                });
-
-            modelBuilder.Entity("PSI.TI.GestaoEscolar.Domain.Models.Matricula", b =>
-                {
-                    b.HasOne("PSI.TI.GestaoEscolar.Domain.Models.Turma", null)
-                        .WithMany("Matriculas")
                         .HasForeignKey("TurmaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

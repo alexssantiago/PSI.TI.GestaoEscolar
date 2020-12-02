@@ -1,25 +1,35 @@
-﻿namespace PSI.TI.GestaoEscolar.Domain.Models
+﻿using PSI.TI.GestaoEscolar.Domain.Models.Validations;
+using System;
+
+namespace PSI.TI.GestaoEscolar.Domain.Models
 {
     public class Disciplina : Entity
     {
         public string Descricao { get; private set; }
         public int CargaHoraria { get; private set; }
+        public Guid? TurmaId { get; private set; }
+
+        // EF Relation
+        public Turma Turma { get; }
 
         // For EF
         protected Disciplina()
         {
-            
         }
 
-        protected Disciplina(string descricao, int cargaHoraria)
+        public Disciplina(string descricao, int cargaHoraria)
         {
             Descricao = descricao;
             CargaHoraria = cargaHoraria;
         }
 
-        public override bool EhValido()
+        public Disciplina(string descricao, int cargaHoraria, Guid turmaId)
         {
-            throw new System.NotImplementedException();
+            Descricao = descricao;
+            CargaHoraria = cargaHoraria;
+            TurmaId = turmaId;
         }
+
+        public override bool EhValido() => new DisciplinaValidation().Validate(this).IsValid;
     }
 }

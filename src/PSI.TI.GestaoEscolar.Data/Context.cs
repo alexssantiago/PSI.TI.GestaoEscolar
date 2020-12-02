@@ -18,7 +18,11 @@ namespace PSI.TI.GestaoEscolar.Data
 
         public DbSet<Responsavel> Responsaveis { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
-        
+        public DbSet<Matricula> Matriculas { get; set; }
+        public DbSet<Professor> Professores { get; set; }
+        public DbSet<Disciplina> Disciplinas { get; set; }
+        public DbSet<Turma> Turmas { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var property in modelBuilder.Model.GetEntityTypes()

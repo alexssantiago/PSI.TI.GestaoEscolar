@@ -1,0 +1,45 @@
+﻿@using PSI.TI.GestaoEscolar.MVC.Extensions
+@model IEnumerable<PSI.TI.GestaoEscolar.Application.ViewModels.ProfessorViewModel>
+
+@{
+    Layout = null;
+}
+
+<vc:Summary></vc:Summary>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Formacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @this.FormatarCpf(item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Formacao)
+                </td>
+                @*<td class="text-right">
+                    <a class="btn btn-info" asp-action="Detalhes" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" asp-action="Atualizar" asp-route-id="@item.Id" data-modal=""><spam class="fa fa-pencil-alt"></spam></a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

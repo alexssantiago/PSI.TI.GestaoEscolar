@@ -17,8 +17,18 @@ namespace PSI.TI.GestaoEscolar.MVC.Configuration
             
             services.AddScoped<IResponsavelRepository, ResponsavelRepository>();
             services.AddScoped<IResponsavelService, ResponsavelService>();
+
             services.AddScoped<IAlunoRepository, AlunoRepository>();
             services.AddScoped<IAlunoService, AlunoService>();
+
+            services.AddScoped<IProfessorRepository, ProfessorRepository>();
+            services.AddScoped<IProfessorService, ProfessorService>();
+
+            services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
+            services.AddScoped<IDisciplinaService, DisciplinaService>();
+
+            services.AddScoped<ITurmaRepository, TurmaRepository>();
+            services.AddScoped<ITurmaService, TurmaService>();
 
             return services;
         }

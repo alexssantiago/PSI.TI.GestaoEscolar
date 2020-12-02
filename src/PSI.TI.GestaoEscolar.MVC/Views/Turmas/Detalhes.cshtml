@@ -1,0 +1,55 @@
+﻿@model PSI.TI.GestaoEscolar.Application.ViewModels.TurmaViewModel
+
+@{
+    ViewData["Title"] = "Turma";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Informações somente leitura</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Professor")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Professor.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
+</div>
+
+<div id="Target">
+    <partial name="_ListaDisciplinas" model="@Model.DisciplinasOfertadas" />
+</div>
+
+<div id="Target">
+    <partial name="_ListaDisciplinas" model="@Model.DisciplinasOfertadas" />
+</div>
+
+<div id="myModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            AjaxModal();
+        });
+    </script>
+}

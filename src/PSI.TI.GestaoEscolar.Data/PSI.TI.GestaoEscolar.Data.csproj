@@ -22,8 +22,4 @@
     <ProjectReference Include="..\PSI.TI.GestaoEscolar.Domain\PSI.TI.GestaoEscolar.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>
